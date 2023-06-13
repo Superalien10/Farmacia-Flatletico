@@ -101,7 +101,7 @@ CREATE TABLE Categoria
 CREATE TABLE Vacina
 (
   IDVacina VARCHAR(50) NOT NULL,
-  NomeVacina VARCHAR(30) NOT NULL,
+  NomeVacina VARCHAR(60) NOT NULL,
   DataVacina DATE NOT NULL,
   FornecedorVacina VARCHAR(30) NOT NULL,
   LoteVacina VARCHAR(30) NOT NULL,
