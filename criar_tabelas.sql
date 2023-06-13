@@ -100,7 +100,7 @@ CREATE TABLE Categoria
 
 CREATE TABLE Vacina
 (
-  IDVacina VARCHAR(40) NOT NULL,
+  IDVacina VARCHAR(50) NOT NULL,
   NomeVacina VARCHAR(30) NOT NULL,
   DataVacina DATE NOT NULL,
   FornecedorVacina VARCHAR(30) NOT NULL,
@@ -241,7 +241,7 @@ CREATE TABLE Conflitar
 
 CREATE TABLE Agendar
 (
-  IDVacina VARCHAR(40) NOT NULL,
+  IDVacina VARCHAR(50) NOT NULL,
   IDCliente VARCHAR(10) NOT NULL,
   PRIMARY KEY (IDVacina, IDCliente),
   FOREIGN KEY (IDVacina) REFERENCES Vacina(IDVacina),
@@ -250,7 +250,7 @@ CREATE TABLE Agendar
 
 CREATE TABLE Cadastrar
 (
-  IDVacina VARCHAR(40) NOT NULL,
+  IDVacina VARCHAR(50) NOT NULL,
   IDCliente VARCHAR(10) NOT NULL,
   PRIMARY KEY (IDVacina, IDCliente),
   FOREIGN KEY (IDVacina) REFERENCES Vacina(IDVacina),
