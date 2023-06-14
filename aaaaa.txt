@@ -14,6 +14,7 @@ SELECT * FROM cdc.change_tables;
 
 
 SELECT * into DWFlatlético_CFB_CHA.dbo.staging_dbo_Cliente FROM DWFlatlético_CFB_CHA.[dbo].[Cliente];
+drop table DWFlatlético_CFB_CHA.dbo.staging_dbo_Cliente
 
 select * from DWFlatlético_CFB_CHA.dbo.staging_dbo_Cliente;
 INSERT INTO [DWFlatlético_CFB_CHA].[dbo].[Cliente]
@@ -26,11 +27,14 @@ select
 	c.Bairro,
 	c.Municipio,
 	c.Estado,
-	c.FaixaEtaria
+	c.Idade,
+	c.FaixaEtaria,
+	null
 from
 	Cliente as c
-	left join DWFlatlético_CFB_CHA.dbo.staging_dbo_Cliente cc on c.IDCliente=cc.IDCliente
 where
-	cc.IDCliente is null;
+	c.IDCliente not in (select IDCliente from DWFlatlético_CFB_CHA.dbo.staging_dbo_Cliente);
 
 select * from DWFlatlético_CFB_CHA.dbo.Cliente ;
+
+
