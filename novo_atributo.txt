@@ -8,6 +8,9 @@ SET Idade = DATEDIFF(year, DataNascimentoCliente, GETDATE()) + 0;
 ALTER TABLE Cliente
 ADD FaixaEtaria VARCHAR(50);
 
+ALTER TABLE DWFlatlético_CFB_CHA.dbo.Cliente
+ADD FaixaEtaria VARCHAR(50);
+
 UPDATE Cliente
 SET FaixaEtaria = (
     CASE
@@ -19,6 +22,17 @@ SET FaixaEtaria = (
     END
 );
 SELECT * FROM Cliente;
+
+UPDATE DWFlatlético_CFB_CHA.cbo.Cliente
+SET FaixaEtaria = (
+    CASE
+        WHEN Idade <= 5 THEN 'Pessoas de até 5 anos'
+        WHEN Idade >= 6 AND Idade <= 17 THEN 'Pessoas de 6 anos a 17'
+        WHEN Idade >= 18 AND Idade <= 64 THEN 'Pessoas de 18 a 64'
+        WHEN Idade >= 65 AND Idade <= 79 THEN 'Pessoas de 65 a 79'
+        WHEN Idade >= 80 THEN 'Pessoas de 80 anos ou mais'
+    END
+);
 
 ALTER TABLE DWFlatlético_CFB_CHA.dbo.Cliente
 ADD Comorbidade VARCHAR(60);
