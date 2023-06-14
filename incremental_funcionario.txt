@@ -1,0 +1,30 @@
+select is_cdc_enabled,* from sys.databases where name in ('DWFlatlético_CFB_CHA');
+--- agora habilitar por tabela
+EXEC sys.sp_cdc_enable_table  
+@source_schema = N'dbo',  
+@source_name   = N'Funcionario',
+@role_name     = NULL,
+@supports_net_changes = 1
+go
+
+exec sys.sp_cdc_help_change_data_capture
+
+SELECT capture_instance FROM cdc.change_tables;
+SELECT * FROM cdc.change_tables;
+
+
+SELECT * into DWFlatlético_CFB_CHA.dbo.staging_dbo_|Funcionario FROM DWFlatlético_CFB_CHA.[dbo].[Funcionario];
+
+select * from DWFlatlético_CFB_CHA.dbo.staging_dbo_Funcionario;
+INSERT INTO [DWFlatlético_CFB_CHA].[dbo].[Funcionario]
+select 
+	newid(),
+	f.IDFuncionario
+	f.NomeFuncionario
+from
+	Funcionario as f
+where
+	f.IDFuncionario not in 
+	(select IDFuncionario from Funcionario);
+
+select * from DWFlatlético_CFB_CHA.dbo.Funcionario;
