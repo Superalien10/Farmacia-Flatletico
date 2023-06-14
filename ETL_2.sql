@@ -1,7 +1,7 @@
-truncate table [DWFlatlético_CFB_CHA].[dbo].[Vacina];
-delete from [DWFlatlético_CFB_CHA].[dbo].[Funcionario];
+truncate table [DWFlatlÃ©tico_CFB_CHA].[dbo].[Vacina];
+delete from [DWFlatlÃ©tico_CFB_CHA].[dbo].[Funcionario];
 
-INSERT INTO [DWFlatlético_CFB_CHA].[dbo].[Funcionario]
+INSERT INTO [DWFlatlÃ©tico_CFB_CHA].[dbo].[Funcionario]
 select 
 	newid(),
 	f.IDFuncionario,
@@ -11,9 +11,9 @@ from
 	
 	
 	
-select * from [DWFlatlético_CFB_CHA].[dbo].Calendario;
+select * from [DWFlatlÃ©tico_CFB_CHA].[dbo].Calendario;
 -- carregar apenas as datas novas
-insert into [DWFlatlético_CFB_CHA].[dbo].Calendario
+insert into [DWFlatlÃ©tico_CFB_CHA].[dbo].Calendario
 select
 	newid(),
 	a.datacompleta,
@@ -31,14 +31,14 @@ select distinct
 	datepart(quarter,v.DataVacina) as trimestre,
 	datepart(year,v.DataVacina) as ano
 from 
-	DataVacina v 
-where cast(v.DataVacina as date) not in (select [DataCompleta] from [DWFlatlético_CFB_CHA].[dbo].Calendario)
+	Vacina v 
+where cast(v.DataVacina as date) not in (select [DataCompleta] from [DWFlatlÃ©tico_CFB_CHA].[dbo].Calendario)
 	) as a;
 	
 	
 
 
-select * from DWFlatlético_CFB_CHA.dbo.Vacina;
+select * from DWFlatlÃ©tico_CFB_CHA.dbo.Vacina;
 
 select
 	v.[IDVacina],
@@ -53,9 +53,9 @@ from
 	inner join Cliente cl on c.[IDCliente]=cl.[IDCliente]
 	inner join Atendente a on v.[IDAtendente]=a.[IDAtendente]
 	inner join Funcionario f on a.[IDFuncionario]=f.[IDFuncionario]
-	inner join DWFlatlético_CFB_CHA.dbo.Funcionario dwf on dwf.IDFuncionario=f.[IDFuncionario]
-	inner join DWFlatlético_CFB_CHA.dbo.Cliente dwc on dwc.IDCliente=cl.[IDCliente]
-	inner join DWFlatlético_CFB_CHA.[dbo].Calendario dwcal on dwcal.DataCompleta=cast(v.DataVacina as date)
+	inner join DWFlatlÃ©tico_CFB_CHA.dbo.Funcionario dwf on dwf.IDFuncionario=f.[IDFuncionario]
+	inner join DWFlatlÃ©tico_CFB_CHA.dbo.Cliente dwc on dwc.IDCliente=cl.[IDCliente]
+	inner join DWFlatlÃ©tico_CFB_CHA.[dbo].Calendario dwcal on dwcal.DataCompleta=cast(v.DataVacina as date)
 EXCEPT
 SELECT [IDVacina]
       ,[NomeVacina]
@@ -64,6 +64,6 @@ SELECT [IDVacina]
       ,[ChaveFuncionario]
       ,[ChaveCliente]
       ,[ChaveCalendario]
-  FROM [DWFlatlético_CFB_CHA].[dbo].[Vacina]
+  FROM [DWFlatlÃ©tico_CFB_CHA].[dbo].[Vacina]
 GO
 
