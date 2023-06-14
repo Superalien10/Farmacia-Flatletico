@@ -20,15 +20,15 @@ SELECT capture_instance FROM cdc.change_tables;
 SELECT * FROM cdc.change_tables;
 
 --- criando uma tabela de staging para incluido em
-SELECT * into DWFlatlÈtico_CFB_CHA.dbo.staging_dbo_Vacina FROM [dbo].[Vacina];
+SELECT * into DWFlatl√©tico_CFB_CHA.dbo.staging_dbo_Vacina FROM [dbo].[Vacina];
 
 /*****
 
-Atualizar calend·rio
+Atualizar calend√°rio
 
 ******/
 
-insert into [DWFlatlÈtico_CFB_CHA].[dbo].Calendario
+insert into [DWFlatl√©tico_CFB_CHA].[dbo].Calendario
 select
 	newid(),
 	a.datacompleta,
@@ -47,44 +47,47 @@ select distinct
 	datepart(year,v.DataVacina) as ano
 from 
 	Vacina v 
-where cast(v.DataVacina as date) not in (select [DataCompleta] from [DWFlatlÈtico_CFB_CHA].[dbo].Calendario)
+where cast(v.DataVacina as date) not in (select [DataCompleta] from [DWFlatl√©tico_CFB_CHA].[dbo].Calendario)
 	) as a;
 
 
--- atualizaÁ„o de acordo com o CDC
+-- atualiza√ß√£o de acordo com o CDC
 
-select * from DWFlatlÈtico_CFB_CHA.dbo.Vacina;
+select * from DWFlatl√©tico_CFB_CHA.dbo.Vacina;
 
--- sÛ funciona se inserir nas duas tabelas, includes e salestransaction
+-- s√≥ funciona se inserir nas duas tabelas, includes e salestransaction
 
-insert into DWFlatlÈtico_CFB_CHA.dbo.Vacina
-
-select
+insert into DWFlatl√©tico_CFB_CHA.dbo.Vacina
+INSERT INTO DWFlatl√©tico_CFB_CHA.dbo.staging_dbo_Vacina
+SELECT
 	v.[IDVacina],
 	v.[NomeVacina],
 	v.[FornecedorVacina],
 	v.[LoteVacina],
 	dwf.ChaveFuncionario,
 	dwc.ChaveCliente,
-	dwcal.ChaveCalendario as ChaveCalendario
-from
-	DWFlatlÈtico_CFB_CHA.[dbo].[staging_Vacina] v 
-	inner join Cadastrar c on v.[IDVacina]=c.[IDVacina]
-	inner join Cliente cl on c.[IDCliente]=cl.[IDCliente]
-	inner join Atendente a on v.[IDAtendente]=a.[IDAtendente]
-	inner join Funcionario f on a.[IDFuncionario]=f.[IDFuncionario]
-	inner join DWFlatlÈtico_CFB_CHA.dbo.Funcionario dwf on dwf.IDFuncionario=f.[IDFuncionario]
-	inner join DWFlatlÈtico_CFB_CHA.dbo.Cliente dwc on dwc.IDCliente=cl.[IDCliente]
-	inner join DWFlatlÈtico_CFB_CHA.[dbo].Calendario dwcal on dwcal.DataCompleta=cast(v.DataVacina as date)
-	
+	dwcal.ChaveCalendario
+FROM
+	Vacina v
+	LEFT JOIN DWFlatl√©tico_CFB_CHA.dbo.staging_dbo_Vacina vv ON vv.IDVacina = v.IDVacina
+	INNER JOIN Cadastrar c ON v.[IDVacina] = c.[IDVacina]
+	INNER JOIN Cliente cl ON c.[IDCliente] = cl.[IDCliente]
+	INNER JOIN Atendente a ON v.[IDAtendente] = a.[IDAtendente]
+	INNER JOIN Funcionario f ON a.[IDFuncionario] = f.[IDFuncionario]
+	INNER JOIN DWFlatl√©tico_CFB_CHA.dbo.Funcionario dwf ON dwf.IDFuncionario = f.[IDFuncionario]
+	INNER JOIN DWFlatl√©tico_CFB_CHA.dbo.Cliente dwc ON dwc.IDCliente = cl.[IDCliente]
+	INNER JOIN DWFlatl√©tico_CFB_CHA.[dbo].Calendario dwcal ON dwcal.DataCompleta = CAST(v.DataVacina AS date)
+WHERE
+	vv.IDVacina IS NULL; -- Verifica se n√£o h√° correspond√™ncia na tabela "staging_dbo_Vacina"
+
 /****
 
-se n„o vier nada, conferir se as tabelas de staging correspondem ao conte˙do incremental.
+se n√£o vier nada, conferir se as tabelas de staging correspondem ao conte√∫do incremental.
 
 *****/
 
 
--- agora que j· carreguei, desabilitar e re-habilitar o CDC
+-- agora que j√° carreguei, desabilitar e re-habilitar o CDC
 SELECT * FROM cdc.change_tables;
 
 EXEC sys.sp_cdc_disable_table  
@@ -102,7 +105,7 @@ go
 
 /****
 
-conferir que agora a lista de mudanÁas est· zerada!
+conferir que agora a lista de mudan√ßas est√° zerada!
 
 *****/
 
@@ -110,21 +113,21 @@ SELECT * FROM [cdc].[dbo_Vacina_CT];
 
 
 --- montar uma consulta para o fato vendas
-use DWFlatlÈtico_CFB_CHA
+use DWFlatl√©tico_CFB_CHA
 go
 
 create view FatoVacina as
 select *
 from
-	[DWFlatlÈtico_CFB_CHA].[dbo].[Vendas] v inner join [DWFlatlÈtico_CFB_CHA].[dbo].Calendario c on v.ChaveCalendario=c.ChaveCalendario
-	inner join [DWFlatlÈtico_CFB_CHA].[dbo].Cliente cli on cli.ChaveCliente = v.ChaveCliente
-	inner join [DWFlatlÈtico_CFB_CHA].[dbo].Produto p on p.ChaveProduto = v.ChaveProduto
-	inner join [DWFlatlÈtico_CFB_CHA].[dbo].Loja l on l.ChaveLoja = v.ChaveLoja
+	[DWFlatl√©tico_CFB_CHA].[dbo].[Vendas] v inner join [DWFlatl√©tico_CFB_CHA].[dbo].Calendario c on v.ChaveCalendario=c.ChaveCalendario
+	inner join [DWFlatl√©tico_CFB_CHA].[dbo].Cliente cli on cli.ChaveCliente = v.ChaveCliente
+	inner join [DWFlatl√©tico_CFB_CHA].[dbo].Produto p on p.ChaveProduto = v.ChaveProduto
+	inner join [DWFlatl√©tico_CFB_CHA].[dbo].Loja l on l.ChaveLoja = v.ChaveLoja
 go
 
 
 
-select * from DWFlatlÈtico_CFB_CHA.dbo.FatoVacina;
+select * from DWFlatl√©tico_CFB_CHA.dbo.FatoVacina;
 
 /******
 
