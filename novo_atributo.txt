@@ -9,6 +9,12 @@ ALTER TABLE Cliente
 ADD FaixaEtaria VARCHAR(50);
 
 ALTER TABLE DWFlatlético_CFB_CHA.dbo.Cliente
+ADD Idade INT;
+
+UPDATE DWFlatlético_CFB_CHA.dbo.Cliente
+SET Idade = DATEDIFF(year, DataNascimentoCliente, GETDATE()) + 0;
+
+ALTER TABLE DWFlatlético_CFB_CHA.dbo.Cliente
 ADD FaixaEtaria VARCHAR(50);
 
 UPDATE Cliente
@@ -23,7 +29,7 @@ SET FaixaEtaria = (
 );
 SELECT * FROM Cliente;
 
-UPDATE DWFlatlético_CFB_CHA.cbo.Cliente
+UPDATE DWFlatlético_CFB_CHA.dbo.Cliente
 SET FaixaEtaria = (
     CASE
         WHEN Idade <= 5 THEN 'Pessoas de até 5 anos'
@@ -48,6 +54,5 @@ SELECT top 1 @IDCliente = IDCliente FROM Cliente ORDER BY NEWID()
 INSERT INTO CadastrarDoenca VALUES ('DO007', @IDCliente);
 SELECT top 1 @IDCliente = IDCliente FROM Cliente ORDER BY NEWID()
 INSERT INTO CadastrarDoenca VALUES ('DO008', @IDCliente);
-
 
 
