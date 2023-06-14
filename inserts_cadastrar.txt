@@ -1,0 +1,80 @@
+-- Cliente CL001
+INSERT INTO Cadastrar (IDCliente, IDVacina) VALUES ('CL001', 'VA001');
+-- Cliente CL002
+INSERT INTO Cadastrar (IDCliente, IDVacina) VALUES ('CL002', 'VA001');
+-- Cliente CL003
+INSERT INTO Cadastrar (IDCliente, IDVacina) VALUES ('CL003', 'VA001');
+-- Cliente CL004
+INSERT INTO Cadastrar (IDCliente, IDVacina) VALUES ('CL004', 'VA002');
+-- Cliente CL005
+INSERT INTO Cadastrar (IDCliente, IDVacina) VALUES ('CL005', 'VA002');
+-- Cliente CL006
+INSERT INTO Cadastrar (IDCliente, IDVacina) VALUES ('CL006', 'VA003');
+-- Cliente CL007
+INSERT INTO Cadastrar (IDCliente, IDVacina) VALUES ('CL007', 'VA004');
+-- Cliente CL008
+INSERT INTO Cadastrar (IDCliente, IDVacina) VALUES ('CL008', 'VA004');
+-- Cliente CL009
+INSERT INTO Cadastrar (IDCliente, IDVacina) VALUES ('CL009', 'VA005');
+-- Cliente CL010
+INSERT INTO Cadastrar (IDCliente, IDVacina) VALUES ('CL010', 'VA006');
+-- Cliente CL011
+INSERT INTO Cadastrar (IDCliente, IDVacina) VALUES ('CL011', 'VA006');
+-- Cliente CL012
+INSERT INTO Cadastrar (IDCliente, IDVacina) VALUES ('CL012', 'VA007');
+-- Cliente CL013
+INSERT INTO Cadastrar (IDCliente, IDVacina) VALUES ('CL013', 'VA008');
+-- Cliente CL014
+INSERT INTO Cadastrar (IDCliente, IDVacina) VALUES ('CL014', 'VA008');
+-- Cliente CL015
+INSERT INTO Cadastrar (IDCliente, IDVacina) VALUES ('CL015', 'VA009');
+-- Cliente CL016
+INSERT INTO Cadastrar (IDCliente, IDVacina) VALUES ('CL016', 'VA010');
+-- Cliente CL017
+INSERT INTO Cadastrar (IDCliente, IDVacina) VALUES ('CL017', 'VA011');
+-- Cliente CL018
+INSERT INTO Cadastrar (IDCliente, IDVacina) VALUES ('CL018', 'VA011');
+-- Cliente CL019
+INSERT INTO Cadastrar (IDCliente, IDVacina) VALUES ('CL019', 'VA012');
+-- Cliente CL020
+INSERT INTO Cadastrar (IDCliente, IDVacina) VALUES ('CL020', 'VA013');
+-- Cliente CL021
+INSERT INTO Cadastrar (IDCliente, IDVacina) VALUES ('CL021', 'VA014');
+-- Cliente CL022
+INSERT INTO Cadastrar (IDCliente, IDVacina) VALUES ('CL022', 'VA014');
+-- Cliente CL023
+INSERT INTO Cadastrar (IDCliente, IDVacina) VALUES ('CL023', 'VA015');
+-- Cliente CL024
+INSERT INTO Cadastrar (IDCliente, IDVacina) VALUES ('CL024', 'VA016');
+-- Cliente CL025
+INSERT INTO Cadastrar (IDCliente, IDVacina) VALUES ('CL025', 'VA017');
+-- Cliente CL026
+INSERT INTO Cadastrar (IDCliente, IDVacina) VALUES ('CL026', 'VA018');
+-- Cliente CL027
+INSERT INTO Cadastrar (IDCliente, IDVacina) VALUES ('CL027', 'VA019');
+-- Cliente CL028
+INSERT INTO Cadastrar (IDCliente, IDVacina) VALUES ('CL028', 'VA019');
+-- Cliente CL029
+INSERT INTO Cadastrar (IDCliente, IDVacina) VALUES ('CL029', 'VA020');
+-- Cliente CL030
+INSERT INTO Cadastrar (IDCliente, IDVacina) VALUES ('CL030', 'VA021');
+-- Cliente CL031
+INSERT INTO Cadastrar (IDCliente, IDVacina) VALUES ('CL031', 'VA021');
+-- Cliente CL032
+INSERT INTO Cadastrar (IDCliente, IDVacina) VALUES ('CL032', 'VA022');
+-- Cliente CL033
+INSERT INTO Cadastrar (IDCliente, IDVacina) VALUES ('CL033', 'VA023');
+-- Cliente CL034
+INSERT INTO Cadastrar (IDCliente, IDVacina) VALUES ('CL034', 'VA024');
+-- Cliente CL035
+INSERT INTO Cadastrar (IDCliente, IDVacina) VALUES ('CL035', 'VA025');
+-- Cliente CL036
+INSERT INTO Cadastrar (IDCliente, IDVacina) VALUES ('CL036', 'VA026');
+-- Cliente CL037
+INSERT INTO Cadastrar (IDCliente, IDVacina) VALUES ('CL037', 'VA027');
+-- Cliente CL038
+INSERT INTO Cadastrar (IDCliente, IDVacina) VALUES ('CL038', 'VA027');
+-- Cliente CL039
+INSERT INTO Cadastrar (IDCliente, IDVacina) VALUES ('CL039', 'VA028');
+-- Cliente CL040
+INSERT INTO Cadastrar (IDCliente, IDVacina) VALUES ('CL040', 'VA029');

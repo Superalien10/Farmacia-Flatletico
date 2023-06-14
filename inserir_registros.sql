@@ -322,6 +322,7 @@ END
 /*++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++*/
 declare @IDCompra varchar(10)
 declare @IDEntregador varchar(10)
+declare @IDCaixa varchar(10)
 declare @HoraEntrega datetime
 declare @FromDatetime datetime
 declare @ToDatetime datetime
@@ -331,14 +332,14 @@ set @contentrega = 0
 while (@contentrega < 30)
 begin
 SELECT top 1 @IDEntregador = IDEntregador FROM Entregador ORDER BY NEWID()
+SELECT top 1 @IDCaixa = IDCaixa FROM Caixa ORDER BY NEWID()
 if @contentrega < 10 SELECT @IDCompra = IDCompra FROM Compra where IDCompra = concat('CO00', cast(@contentrega+1 as varchar(10))) ORDER BY NEWID();
 else SELECT @IDCompra = IDCompra FROM Compra where IDCompra = concat('CO0', cast(@contentrega+1 as varchar(10))) ORDER BY NEWID();
 SELECT @FromDatetime = DataCompra FROM Compra where IDCompra = @IDCompra ORDER BY NEWID();
 SELECT @FromDatetime = DataCompra FROM Compra where IDCompra = @IDCompra ORDER BY NEWID();
 set @ToDatetime = dateadd(day, 7, @FromDatetime);
 select @HoraEntrega = dateadd(second, rand(checksum(newid()))*(1+datediff(second, @FromDatetime, @ToDatetime)),@FromDatetime);
-insert into Entrega values(@HoraEntrega, @IDCompra, @IDEntregador);
+insert into Entrega values(@HoraEntrega, @IDCompra, @IDEntregador, @IDCaixa);
 set @contentrega = @contentrega + 1;
 end
-
 
