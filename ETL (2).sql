@@ -5,7 +5,7 @@ PARTE INCREMENTAL
 
 ****/
 
-select is_cdc_enabled,* from sys.databases where name in ('DB197990112');
+select is_cdc_enabled,* from sys.databases where name in ('DBFlatlético_CFB_CHA');
 --- agora habilitar por tabela
 EXEC sys.sp_cdc_enable_table  
 @source_schema = N'dbo',  
